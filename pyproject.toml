@@ -1,6 +1,6 @@
 [project]
 name = "geoplot-themes"
-version = "0.1.0"
+version = "0.1.1"
 description = "Stunning pre-designed map themes and styling templates for Matplotlib, Seaborn, and GeoPandas"
 readme = "README.md"
 authors = [
