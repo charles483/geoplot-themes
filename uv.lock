@@ -290,7 +290,7 @@ wheels = [
 
 [[package]]
 name = "geoplot-themes"
-version = "0.1.0"
+version = "0.1.1"
 source = { editable = "." }
 dependencies = [
     { name = "geopandas" },

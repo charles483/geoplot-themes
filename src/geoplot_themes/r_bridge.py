@@ -334,7 +334,7 @@ def plot_map_r(
     created_by: Optional[str] = None,
     inset: bool = False,
     inset_map: Optional[str] = None,
-    inset_position: Optional[List[float]] = None,
+    inset_position: Optional[Union[List[float], str]] = None,
     inset_scale: float = 0.25,
     rscript_path: Optional[str] = None,
     lib_dir: Optional[str] = None
@@ -498,6 +498,22 @@ def plot_map_r(
     logo_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "logo.png"))
     logo_path_clean = logo_path.replace("\\", "/")
 
+    if isinstance(inset_position, str):
+        inset_position_clean = inset_position.lower().replace("_", "-")
+        margin = 0.05
+        if inset_position_clean == "top-right":
+            inset_pos_parsed = [1.0 - margin - inset_scale, 1.0 - margin - inset_scale]
+        elif inset_position_clean == "top-left":
+            inset_pos_parsed = [margin, 1.0 - margin - inset_scale]
+        elif inset_position_clean == "bottom-right":
+            inset_pos_parsed = [1.0 - margin - inset_scale, margin]
+        elif inset_position_clean == "bottom-left":
+            inset_pos_parsed = [margin, margin]
+        else:
+            inset_pos_parsed = [0.7, 0.7] # Default
+    else:
+        inset_pos_parsed = inset_position or [0.7, 0.7]
+
     # Build R script lines
     r_lines = [
         f'.libPaths(c("{lib_dir_clean}", .libPaths()))',
@@ -533,10 +549,10 @@ def plot_map_r(
         f'created_by_val <- "{created_by or author or "NULL"}"',
         f'inset_enabled <- {str(inset or (inset_map is not None)).upper()}',
         f'custom_inset_path <- "{inset_map.replace("\\", "/") if inset_map else "NULL"}"',
-        f'inset_left <- {(inset_position or [0.7, 0.7])[0]}',
-        f'inset_bottom <- {(inset_position or [0.7, 0.7])[1]}',
-        f'inset_right <- {min(1.0, (inset_position or [0.7, 0.7])[0] + inset_scale)}',
-        f'inset_top <- {min(1.0, (inset_position or [0.7, 0.7])[1] + inset_scale)}',
+        f'inset_left <- {inset_pos_parsed[0]}',
+        f'inset_bottom <- {inset_pos_parsed[1]}',
+        f'inset_right <- {min(1.0, inset_pos_parsed[0] + inset_scale)}',
+        f'inset_top <- {min(1.0, inset_pos_parsed[1] + inset_scale)}',
         f'main_width <- {width}',
         f'main_height <- {height}',
         f'title <- "{title or ""}"',
@@ -849,7 +865,7 @@ def plot_map_r(
         '      base_inset <- st_as_sf(maps::map("world", plot = FALSE, fill = TRUE))',
         '      base_inset <- st_transform(base_inset, target_crs)',
         '    }',
-        '    bbox_poly <- st_as_sfc(st_bbox(c(xmin=map_bbox["xmin"], xmax=map_bbox["xmax"], ymin=map_bbox["ymin"], ymax=map_bbox["ymax"]), crs=target_crs))',
+        '    bbox_poly <- st_as_sfc(st_bbox(c(xmin=as.numeric(map_bbox["xmin"]), xmax=as.numeric(map_bbox["xmax"]), ymin=as.numeric(map_bbox["ymin"]), ymax=as.numeric(map_bbox["ymax"])), crs=target_crs))',
         '    ',
         '    if (custom_inset_path != "NULL") {',
         '      # Use the full extent of the provided inset map',

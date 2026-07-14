@@ -37,7 +37,8 @@ def main():
         north_arrow=True,
         orientation="auto",
         author="Perur Geospatial Solutions",
-        inset_map=r"G:\GIS4.1\Project\others\swamp\river.shp"
+        inset_map=r"G:\GIS4.1\Project\others\swamp\swamp.shp",
+        inset_position="bottom-left"
     )
     
     print(f"Map successfully generated and saved to: {output_path}")
