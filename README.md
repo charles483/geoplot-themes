@@ -1,7 +1,7 @@
 # GeoPlot-Themes 🌍🎨
 
 <p align="center">
-  <img src="images/logo.png" alt="GeoPlot-Themes Logo" width="320"/>
+  <img src="https://raw.githubusercontent.com/charles483/geoplot-themes/main/images/logo.png" alt="GeoPlot-Themes Logo" width="320"/>
 </p>
 
 <p align="center">
@@ -25,12 +25,12 @@
 
 | `natgeo_minimalist` (Cream/Editorial) | `retro_blueprint` (Classic Technical) | `dark_matter` (Neon/Dark Mode) |
 | :---: | :---: | :---: |
-| <img src="images/erosion_natgeo_minimalist_landscape.png" width="260" alt="NatGeo Minimalist"/> | <img src="images/erosion_retro_blueprint_landscape.png" width="260" alt="Retro Blueprint"/> | <img src="images/erosion_dark_matter_landscape.png" width="260" alt="Dark Matter"/> |
+| <img src="https://raw.githubusercontent.com/charles483/geoplot-themes/main/images/erosion_natgeo_minimalist_landscape.png" width="260" alt="NatGeo Minimalist"/> | <img src="https://raw.githubusercontent.com/charles483/geoplot-themes/main/images/erosion_retro_blueprint_landscape.png" width="260" alt="Retro Blueprint"/> | <img src="https://raw.githubusercontent.com/charles483/geoplot-themes/main/images/erosion_dark_matter_landscape.png" width="260" alt="Dark Matter"/> |
 
 ### Complex Vector Overlays with Independent Legends
 A base raster (elevation/erosion) layered with multiple separate vector shapefiles (wetlands and rivers), featuring automatically styled, independent, conflict-free scales:
 <p align="center">
-  <img src="images/swamp_overlay_map.png" alt="Swamp and River Overlays Map" width="550"/>
+  <img src="https://raw.githubusercontent.com/charles483/geoplot-themes/main/images/swamp_overlay_map.png" alt="Swamp and River Overlays Map" width="550"/>
 </p>
 
 ---
