@@ -1,0 +1,25 @@
+[project]
+name = "geoplot-themes"
+version = "0.1.0"
+description = "Stunning pre-designed map themes and styling templates for Matplotlib, Seaborn, and GeoPandas"
+readme = "README.md"
+authors = [
+    { name = "Perur Geospatial Solutions", email = "info@perurgeospatial.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "geopandas>=1.1.4",
+    "matplotlib>=3.11.0",
+    "rpy2>=3.6.7",
+    "seaborn>=0.13.2",
+    "shapely>=2.1.2",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.28,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
