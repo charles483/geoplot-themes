@@ -1,0 +1,33 @@
+name: Publish to TestPyPI 🚀
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger on version tags (e.g. v0.1.0)
+  workflow_dispatch: # Allow manual triggering from GitHub UI
+
+jobs:
+  publish:
+    name: Build & Publish to TestPyPI
+    runs-on: ubuntu-latest
+    environment: testpypi
+    permissions:
+      id-token: write # Strictly required for OIDC Trusted Publishing
+      contents: read
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install
+
+      - name: Build Package
+        run: uv build
+
+      - name: Publish to TestPyPI
+        run: uv publish --publish-url https://test.pypi.org/legacy/
